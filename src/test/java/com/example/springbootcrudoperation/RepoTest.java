@@ -2,18 +2,33 @@ package com.example.springbootcrudoperation;
 import com.example.springbootcrudoperation.Service.impl.CustomerServiceImpl;
 import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
-@DataJpaTest
+@Configuration
+@EnableJpaRepositories(basePackages = "com.developer.customerapi.Repository")
+@PropertySource("persistence-generic-entity.properties")
+@EnableTransactionManagement
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RepoTest {
     @InjectMocks
     CustomerServiceImpl customerService;
@@ -30,29 +45,60 @@ public class RepoTest {
     }
 
     @Test
-    final void testGetCustomerByID() {
-        CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-        assertTrue(customerService.findById(5).empty() != null);
-    }
+	public void testGetCustomerById() {
+	
+		 CustomerEntity item1 = new CustomerEntity(1,"priya","sk","female",9999,"psk@gmail",true);
+		
+		 customerRepository.save(customerEntity);
+		
+	
+		when(customerRepository.findById(item1.getId())).thenReturn(Optional.of(item1));
+		
+		Optional<CustomerEntity> customerEnt=customerRepository.findById(item1.getId());
+		
+		assertNotNull(customerEnt);
+		
+		assertEquals("priya",customerEnt.get().getFname());
+	}
+	
+    
+    
 
-
+	@Test
+	public void testGetAllCustomers() {
+		
+		 CustomerEntity item1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+		 CustomerEntity item2 = new CustomerEntity(6,"ram","mohan","male",99909,"ram@gmail",true);
+		 customerRepository.save(item1);
+		 customerRepository.save(item2);
+	
+		
+		 List<CustomerEntity> customers=(List<CustomerEntity>)customerRepository.findAll();
+		 for(CustomerEntity cust:customers)
+			 System.out.println(cust);
+	     Assertions.assertThat(customers).size().isGreaterThan(0);
+	
+	}
+	
+    @Test
+	@Order(1)
+	public void testSaveCustomer(){
+		CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+		customerRepository.save(item);
+		assertNotNull(item.getId());
+	}
+	
 
     @Test
-    public void testSaveCustomer(){
-        CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-        customerRepository.save(item);
-        assertNotNull(item.getId());
-    }
-
-    @Test
-    public void TestDeleteCustomer(){
-        CustomerEntity item1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-        customerRepository.save(item1);
-     customerRepository.deleteById(item1.getId());
-        Optional optional = customerRepository.findById(item1.getId());
-        assertEquals(Optional.empty(), optional);
-    }
-
+	public void TestDeleteCustomer(){
+	    CustomerEntity item1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+	    customerRepository.save(item1);
+	 
+	    customerRepository.deleteById(item1.getId());
+	    Optional<CustomerEntity> optional = customerRepository.findById(item1.getId());
+	    assertEquals(Optional.empty(), optional);
+	}
+	
 
 
 
