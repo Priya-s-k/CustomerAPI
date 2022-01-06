@@ -1,6 +1,6 @@
 package com.example.springbootcrudoperation;
-import com.example.springbootcrudoperation.Service.impl.CustomerServiceImpl;
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.Service.CustomerServiceImpl;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
 
 import org.assertj.core.api.Assertions;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

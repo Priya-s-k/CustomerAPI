@@ -1,7 +1,7 @@
 package com.example.springbootcrudoperation;
 
-import com.example.springbootcrudoperation.Service.impl.CustomerServiceImpl;
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.Service.CustomerServiceImpl;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
-package com.example.springbootcrudoperation.Service.impl;
+package com.example.springbootcrudoperation.Service;
 
 import com.example.springbootcrudoperation.Service.CustomerService;
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
 import org.springframework.stereotype.Service;
 
