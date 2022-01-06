@@ -1,4 +1,4 @@
-package com.example.springbootcrudoperation.Service.impl.entity;
+package com.example.springbootcrudoperation.entity;
 
 import lombok.Builder;
 

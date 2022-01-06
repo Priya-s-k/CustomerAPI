@@ -1,7 +1,7 @@
 package com.example.springbootcrudoperation.controller;
 
 import com.example.springbootcrudoperation.Service.CustomerService;
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

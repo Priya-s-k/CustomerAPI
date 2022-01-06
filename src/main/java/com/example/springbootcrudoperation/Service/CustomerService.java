@@ -1,6 +1,6 @@
 package com.example.springbootcrudoperation.Service;
 
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 
 import java.util.List;
 import java.util.Optional;

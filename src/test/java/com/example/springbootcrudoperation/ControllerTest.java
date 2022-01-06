@@ -1,7 +1,7 @@
 package com.example.springbootcrudoperation;
 
 import com.example.springbootcrudoperation.Service.CustomerService;
-import com.example.springbootcrudoperation.Service.impl.entity.CustomerEntity;
+import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.controller.CustomerController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
