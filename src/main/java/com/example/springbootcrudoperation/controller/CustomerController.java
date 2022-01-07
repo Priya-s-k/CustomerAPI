@@ -30,7 +30,7 @@ public class CustomerController {
         return customerService.saveCustomer(customerEntity);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public CustomerEntity updateCustomer(@RequestBody CustomerEntity customerEntity) {
         return customerService.updateCustomer(customerEntity);
     }

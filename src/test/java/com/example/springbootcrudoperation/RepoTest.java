@@ -46,14 +46,14 @@ public class RepoTest {
     @Test
 	public void testGetCustomerById() {
 	
-		 CustomerEntity item1 = new CustomerEntity(1,"priya","sk","female",9999,"psk@gmail",true);
+		 CustomerEntity customerEntity = new CustomerEntity(1,"priya","sk","female",9999,"psk@gmail",true);
 		
 		 customerRepository.save(customerEntity);
 		
 	
-		when(customerRepository.findById(item1.getId())).thenReturn(Optional.of(item1));
+		when(customerRepository.findById(customerEntity.getId())).thenReturn(Optional.of(customerEntity));
 		
-		Optional<CustomerEntity> customerEnt=customerRepository.findById(item1.getId());
+		Optional<CustomerEntity> customerEnt=customerRepository.findById(customerEntity.getId());
 		
 		assertNotNull(customerEnt);
 		
@@ -66,10 +66,10 @@ public class RepoTest {
 	@Test
 	public void testGetAllCustomers() {
 		
-		 CustomerEntity item1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-		 CustomerEntity item2 = new CustomerEntity(6,"ram","mohan","male",99909,"ram@gmail",true);
-		 customerRepository.save(item1);
-		 customerRepository.save(item2);
+		 CustomerEntity customerEntity1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+		 CustomerEntity customerEntity2 = new CustomerEntity(6,"ram","mohan","male",99909,"ram@gmail",true);
+		 customerRepository.save(customerEntity1);
+		 customerRepository.save(customerEntity2);
 	
 		
 		 List<CustomerEntity> customers=(List<CustomerEntity>)customerRepository.findAll();
@@ -82,19 +82,19 @@ public class RepoTest {
     @Test
 	@Order(1)
 	public void testSaveCustomer(){
-		CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-		customerRepository.save(item);
-		assertNotNull(item.getId());
+		CustomerEntity customerEntity= new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+		customerRepository.save(customerEntity);
+		assertNotNull(customerEntity.getId());
 	}
 	
 
     @Test
 	public void TestDeleteCustomer(){
-	    CustomerEntity item1 = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-	    customerRepository.save(item1);
+	    CustomerEntity customerEntity = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+	    customerRepository.save(customerEntity);
 	 
-	    customerRepository.deleteById(item1.getId());
-	    Optional<CustomerEntity> optional = customerRepository.findById(item1.getId());
+	    customerRepository.deleteById(customerEntity.getId());
+	    Optional<CustomerEntity> optional = customerRepository.findById(customerEntity.getId());
 	    assertEquals(Optional.empty(), optional);
 	}
 	

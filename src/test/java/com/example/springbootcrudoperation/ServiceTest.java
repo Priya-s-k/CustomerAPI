@@ -53,11 +53,11 @@ public class ServiceTest
     }
     @Test
     public void FindAllCustomer(){
-        List<CustomerEntity> items = Arrays.asList(new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true));
+        List<CustomerEntity> customerEntityList = Arrays.asList(new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true));
         customerRepo.save(customerEntity);
-        when(customerRepo.findAll()).thenReturn(items);
+        when(customerRepo.findAll()).thenReturn(customerEntityList);
         List<CustomerEntity> productList1 =customerService.findAllCustomer();
-        assertEquals(productList1,items);
+        assertEquals(productList1,customerEntityList);
         verify(customerRepo,times(1)).save(customerEntity);
         verify(customerRepo,times(1)).findAll();
     }
