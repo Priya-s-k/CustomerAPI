@@ -30,7 +30,7 @@ public class ControllerTest {
 
 
     @Autowired
-    private CustomerController itemController;
+    private CustomerController customerController;
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,14 +44,14 @@ public class ControllerTest {
 
     @BeforeEach
     public void setUp(){
-        mockMvc = MockMvcBuilders.standaloneSetup(itemController)
+        mockMvc = MockMvcBuilders.standaloneSetup(customerController)
                 .build();
     }
 
     @Test
     public void findAllCustomer() throws Exception {
-        List<CustomerEntity> items = Arrays.asList(new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true));
-        when(customerService.findAllCustomer()).thenReturn(items);
+        List<CustomerEntity> customerEntityList = Arrays.asList(new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true));
+        when(customerService.findAllCustomer()).thenReturn(customerEntityList);
         mockMvc.perform(MockMvcRequestBuilders.get("/customer"))
                 .andExpect(status().isOk());
 
@@ -59,8 +59,8 @@ public class ControllerTest {
 
     @Test
     public void findCustomerByID() throws Exception{
-       CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
-        when(customerService.findById(item.getId())).thenReturn(Optional.of(item));
+       CustomerEntity customerEntity = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+        when(customerService.findById(customerEntity.getId())).thenReturn(Optional.of(customerEntity));
         mockMvc.perform(MockMvcRequestBuilders.get("/customer/5")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -70,18 +70,18 @@ public class ControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(9999))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("psk@gmail"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.is_Active").value(true));
-        Mockito.verify(customerService).findById(item.getId());
+        Mockito.verify(customerService).findById(customerEntity.getId());
     }
 
     @Test
     public void saveCustomer() throws JsonProcessingException, Exception{
 
-        CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+        CustomerEntity customerEntity = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
 
-        when(customerService.saveCustomer(any(CustomerEntity.class))).thenReturn(item);
+        when(customerService.saveCustomer(any(CustomerEntity.class))).thenReturn(customerEntity);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/customer")
-                        .content(new ObjectMapper().writeValueAsString(item))
+                        .content(new ObjectMapper().writeValueAsString(customerEntity))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(5))
@@ -96,12 +96,12 @@ public class ControllerTest {
 
     @Test
     public void updateCustomer() throws Exception {
-        CustomerEntity item = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
+        CustomerEntity customerEntity = new CustomerEntity(5,"priya","sk","female",9999,"psk@gmail",true);
 
-        when(customerService.saveCustomer(any(CustomerEntity.class))).thenReturn(item);
+        when(customerService.saveCustomer(any(CustomerEntity.class))).thenReturn(customerEntity);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/customer")
-                        .content(new ObjectMapper().writeValueAsString(item))
+                        .content(new ObjectMapper().writeValueAsString(customerEntity))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(5))
