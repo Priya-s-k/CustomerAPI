@@ -1,6 +1,5 @@
 package com.example.springbootcrudoperation.Service;
 
-import com.example.springbootcrudoperation.Service.CustomerService;
 import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
 import org.springframework.stereotype.Service;
@@ -39,8 +38,9 @@ private  final CustomerRepo customerRepo;
 
 
     @Override
-    public void deleteById(int id) {
+    public Object deleteById(int id) {
         customerRepo.deleteById(id);
+        return null;
     }
 
 }

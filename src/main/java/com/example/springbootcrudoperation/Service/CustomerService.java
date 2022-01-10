@@ -10,5 +10,5 @@ public interface CustomerService {
     Optional<CustomerEntity> findById(int id);
    CustomerEntity saveCustomer(CustomerEntity customerEntity);
    CustomerEntity updateCustomer(CustomerEntity customerEntity);
-    void deleteById(int id);
+    Object deleteById(int id);
 }

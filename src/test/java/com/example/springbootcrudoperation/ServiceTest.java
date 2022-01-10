@@ -39,10 +39,19 @@ public class ServiceTest
     @Test
     void SaveCustomerTest() throws Exception {
 
-        //stubbing
+
         when(customerRepo.save(any())).thenReturn(customerEntity);
        customerService.saveCustomer(customerEntity);
         verify(customerRepo,times(1)).save(any());
+
+    }
+    @Test
+    void UpdateCustomerTest() throws Exception {
+
+        customerEntity.setFname("Priyanka");
+        when(customerRepo.save(any())).thenReturn(customerEntity);
+        customerService.saveCustomer(customerEntity);
+        assertEquals("Priyanka",customerEntity.getFname());
 
     }
     @Test
