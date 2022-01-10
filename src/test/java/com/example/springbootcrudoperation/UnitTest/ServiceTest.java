@@ -1,4 +1,4 @@
-package com.example.springbootcrudoperation;
+package com.example.springbootcrudoperation.UnitTest;
 
 import com.example.springbootcrudoperation.Service.CustomerServiceImpl;
 import com.example.springbootcrudoperation.entity.CustomerEntity;

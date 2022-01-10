@@ -1,4 +1,4 @@
-package com.example.IntegrationTest;
+package com.example.springbootcrudoperation.IntegrationTest;
 
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

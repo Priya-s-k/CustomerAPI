@@ -1,4 +1,4 @@
-package com.example.IntegrationTest;
+package com.example.springbootcrudoperation.IntegrationTest;
 import com.example.springbootcrudoperation.Application;
 import com.example.springbootcrudoperation.entity.CustomerEntity;
 import com.example.springbootcrudoperation.repository.CustomerRepo;
